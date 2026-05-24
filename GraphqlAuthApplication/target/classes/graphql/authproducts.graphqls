@@ -1,0 +1,49 @@
+enum Role {
+    USER
+    ADMIN
+}
+
+type Query {
+    me: User!
+    products: [Product!]!
+}
+
+type Mutation {
+    register(input: RegisterInput!): User!
+    login(input: LoginInput!): AuthPayload!
+}
+
+type User {
+    id: ID!
+    username: String!
+    fullName: String!
+    email: String!
+    role: Role!
+    jobTitle: String!
+}
+
+type Product {
+    id: ID!
+    name: String!
+    category: String!
+    price: Float!
+    stock: Int!
+}
+
+input RegisterInput {
+    username: String!
+    password: String!
+    fullName: String!
+    email: String!
+    jobTitle: String!
+}
+
+input LoginInput {
+    username: String!
+    password: String!
+}
+
+type AuthPayload {
+    token: String!
+    user: User!
+}
